@@ -1,0 +1,57 @@
+{
+  "name": "bentools/shh",
+  "type": "symfony-bundle",
+  "description": "A Symfony bundle to handle secrets.",
+  "keywords": [
+    "symfony",
+    "secret",
+    "secrets",
+    "openrsa",
+    "openssl",
+    "encrypt",
+    "encryption",
+    "decrypt",
+    "decryption",
+    "public key",
+    "private key",
+    "passphrase"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Beno!t POLASZEK"
+    }
+  ],
+  "require": {
+    "vlucas/pikirasa": "~1.0",
+    "symfony/dependency-injection": "~3.0|~4.0",
+    "symfony/console": "~3.0|~4.0",
+    "symfony/config": "~3.0|~4.0",
+    "symfony/http-kernel": "~3.0|~4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~7.0",
+    "squizlabs/php_codesniffer": "~2.0",
+    "symfony/var-dumper": "~4.0",
+    "php-coveralls/php-coveralls": "2.1",
+    "phpstan/phpstan": "~0.11.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "BenTools\\Shh\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BenTools\\Shh\\Tests\\": "tests"
+    },
+    "files": [
+      "vendor/symfony/var-dumper/Resources/functions/dump.php"
+    ]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}
