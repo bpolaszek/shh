@@ -1,3 +1,9 @@
+[![Latest Stable Version](https://poser.pugx.org/bentools/shh/v/stable)](https://packagist.org/packages/bentools/shh)
+[![License](https://poser.pugx.org/bentools/shh/license)](https://packagist.org/packages/bentools/shh)
+[![Build Status](https://img.shields.io/travis/bpolaszek/shh/master.svg?style=flat-square)](https://travis-ci.org/bpolaszek/shh)
+[![Quality Score](https://img.shields.io/scrutinizer/g/bpolaszek/shh.svg?style=flat-square)](https://scrutinizer-ci.com/g/bpolaszek/shh)
+[![Total Downloads](https://poser.pugx.org/bentools/shh/downloads)](https://packagist.org/packages/bentools/shh)
+
 # Shh! 🤫
 
 Shh! is a proof-of-concept aiming at dealing with secrets within your Symfony application.
