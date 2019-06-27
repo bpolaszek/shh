@@ -133,7 +133,7 @@ final class RegisterSecretCommand extends Command
 
         $io->success(sprintf('Your %s file has been successfully updated!', \basename($this->secretsFile)));
 
-        $io->comment('Hint: you can use your new secret as a parameter:');
+        $io->comment('Tip: you can use your new secret as a parameter:');
 
         $io->writeln(
             <<<EOF

@@ -13,7 +13,7 @@ Here are the key principles:
 * Storing secrets in environment variables will expose them through `phpinfo()`, reports, logs, and child processes.
 * Common encrypt/decrypt strategies require a _key_ or passphrase which works both ways. The problem is, as the key is needed for the application to work, any developer that has access to the project needs that key and can access any secret in plain text.
 * The approach of Matthias is different: any developer can _encrypt_ secrets, but only the production server is able to _decrypt_ them.
-* With that approach, the **public key** (needed to encrypt) is commited to VCS, while the **private key** remains property of the production server.
+* With that approach, the **public key** (needed to encrypt) is commited to VCS, while the **private key** (needed to decrypt) remains property of the production server.
 * Encrypted secrets can thus be committed to VCS. Only the production server will be able to read them.
 
 ## Installation
