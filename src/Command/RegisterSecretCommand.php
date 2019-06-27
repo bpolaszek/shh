@@ -132,6 +132,17 @@ final class RegisterSecretCommand extends Command
         $this->fs->dumpFile($this->secretsFile, $encoded);
 
         $io->success(sprintf('Your %s file has been successfully updated!', \basename($this->secretsFile)));
+
+        $io->comment('Hint: you can use your new secret as a parameter:');
+
+        $io->writeln(
+            <<<EOF
+# config/services.yaml
+parameters:
+    {$key}: '%env(shh:key:{$key}:json:file:SECRETS_FILE)%'
+    
+EOF
+        );
     }
 
     /**
