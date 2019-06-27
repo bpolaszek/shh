@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         beStrictAboutTestsThatDoNotTestAnything="true"
-         beStrictAboutOutputDuringTests="true"
-         bootstrap="vendor/autoload.php"
+
+<!-- https://phpunit.de/manual/current/en/appendixes.configuration.html -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/6.1/phpunit.xsd"
+         backupGlobals="false"
          colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         failOnRisky="true"
-         failOnWarning="true"
-         processIsolation="false"
-         stopOnError="false"
-         stopOnFailure="false"
-         verbose="true"
+         bootstrap="vendor/autoload.php"
 >
+    <php>
+        <ini name="error_reporting" value="-1" />
+        <env name="KERNEL_CLASS" value="BenTools\Shh\Tests\Classes\TestKernel" />
+        <env name="APP_ENV" value="test" />
+        <env name="APP_DEBUG" value="1" />
+        <env name="APP_SECRET" value="s$cretf0rt3st" />
+        <env name="SHELL_VERBOSITY" value="-1" />
+        <env name="SHH_PASSPHRASE" value="USNuclearCodeIs0000" />
+        <env name="A_BIG_SECRET" value="lvkWLXIA5zTYMbvNjCfnm21VUF+tdiRK0SDku9LT1AtqcoDTSq5nTs7jQaZVWnb0KFonPwzBQDuejqPzrX42wmY1mkkmv+TPlHzNG5G2KoffeCmKk7ejebN4ejmoaxm8AoQXCIh9Gfwst1Wyb3wc22hFU7MMa7ykoKNwGpyEPQLeaQGdOz6sN5yhz2v+cToZyrN4Jb4yuhhW98VbNhRhYzyW1qjqzN4kweJbV2qfSAf0WUkKYUx4PqXrMz2e46D39YI8w1Ukmc2pnWqRhxN8STRe5FzyUMqQCmIss6+JvAzVxra7/wQhRimb5t3SpXmqN117RdnCJ+OcqyFnrMRb6W55uFcbEEovFJQlI2fJA53snpKGL1y5yLsiTvXlOQMxwRWGzcpoOXmpicpNr3QZu0bY+P4FXBPOLwkQWXPrE/RwcPEDnVQDgoUa5pkkuUCE3xvGdD4pvbZ+X+P6imGGQJQ6OdaBP5nv6yMomIGN34aiG7ssIxGU0d5F2bV74DJNFlcW1wdeYabvbB/rD7pNlvHuvxZ8hTt/RVSG9+ghkQ83RNMj//pS+rPqZznTt9NWrjz4UVGxVVf7qmBDroPMBVPY9cDU5c6gOPTQLf3YkOnJy1sDmR3d6C6n+esBG2IZPf/l3uyRNeu39plg0YhnjLIhxS24i2r+mSOU9ANqaUA=" />
+    </php>
+
     <testsuites>
-        <testsuite name="Test Suite">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="Project Test Suite">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
+
     <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
+        <whitelist>
+            <directory>src</directory>
         </whitelist>
     </filter>
 </phpunit>

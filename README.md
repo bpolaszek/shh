@@ -107,7 +107,11 @@ shh:
 
 ## Tests
 
-Needed. Definitely.
+```bash
+./vendor/bin/phpunit
+```
+
+More tests are welcome.
 
 ## Feedback
 

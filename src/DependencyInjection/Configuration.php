@@ -4,6 +4,7 @@ namespace BenTools\Shh\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
 final class Configuration implements ConfigurationInterface
 {
@@ -12,9 +13,15 @@ final class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('shh');
+        if (Kernel::MAJOR_VERSION < 4) {
+            $treeBuilder = new TreeBuilder();
+            $rootNode = $treeBuilder->root('shh');
+        } else {
+            $treeBuilder = new TreeBuilder('shh');
+            $rootNode = $treeBuilder->getRootNode();
+        }
 
-        $treeBuilder->getRootNode()
+        $rootNode
             ->children()
                 ->scalarNode('private_key_file')->defaultValue('%kernel.project_dir%/.keys/private.pem')->end()
                 ->scalarNode('public_key_file')->defaultValue('%kernel.project_dir%/.keys/public.pem')->end()
