@@ -38,7 +38,7 @@ composer require bentools/shh:^0.1
 
 **And you're ready to go!** 
 
-If you want a different configuration, checkout the [configuration reference](#configuration-reference) to discover the available options.
+If you want a different configuration, check out the [configuration reference](#configuration-reference) to discover the available options.
 
 ## Usage
 
@@ -107,7 +107,7 @@ shh:
 
 ## Tests
 
-Needed. I know.
+Needed. Definitely.
 
 ## Feedback
 
