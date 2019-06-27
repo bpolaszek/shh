@@ -18,7 +18,9 @@ Here are the key principles:
 
 ## Installation
 
-> composer require bentools/shh:1.0.x-dev
+```bash
+composer require bentools/shh:1.0.x-dev
+```
 
 ## Configuration
 
@@ -36,7 +38,7 @@ Here are the key principles:
 
 **And you're ready to go!** 
 
-If you want a different configuration, run `bin/console config:dump-reference shh` to find out the available options.
+If you want a different configuration, checkout the [configuration reference](#configuration-reference) to discover the available options.
 
 ## Usage
 
@@ -64,10 +66,43 @@ This library ships with an environment variable processor. You can use it like t
 
 ```yaml
 # config/services.yaml
-
 parameters:
     some_secret_thing: '%env(shh:SOME_ENCRYPTED_SECRET)%'
 
+```
+
+### Working with a secrets file
+
+You can store your encrypted secrets in a `.secrets.json` file at the root of your project directory (you can set a different path in the `SHH_SECRETS_FILE` environment variable).
+
+This file can safely be committed to VCS (as soon as the private key isn't).
+
+To encrypt and register a secret in this file, run the following command:
+
+```bash
+bin/console shh:register-secret my_secret # You will be prompted for the value of "my_secret"
+```
+
+You can then use your secrets in your configuration files in the following way:
+
+```yaml
+# config/services.yaml
+parameters:
+    my_secret: '%env(shh:key:my_secret:json:file:SECRETS_FILE)%'
+
+```
+
+## Configuration reference
+
+```yaml
+# config/packages/shh.yaml
+parameters:
+    env(SHH_SECRETS_FILE): '%kernel.project_dir%/.secrets/json'
+
+shh:
+    private_key_file:     '%kernel.project_dir%/.keys/private.pem'
+    public_key_file:      '%kernel.project_dir%/.keys/public.pem'
+    passphrase:           '%env(SHH_PASSPHRASE)%'
 ```
 
 ## Tests

@@ -39,6 +39,13 @@
             <tag name="console.command" />
         </service>
 
+        <service id="BenTools\Shh\Command\RegisterSecretCommand" class="BenTools\Shh\Command\RegisterSecretCommand">
+            <argument type="service" id="BenTools\Shh\Shh"/>
+            <argument type="service" id="Symfony\Component\Filesystem\Filesystem"/>
+            <argument type="string">%env(SHH_SECRETS_FILE)%</argument>
+            <tag name="console.command" />
+        </service>
+
     </services>
 
 </container>
