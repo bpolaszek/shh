@@ -19,7 +19,7 @@ Here are the key principles:
 ## Installation
 
 ```bash
-composer require bentools/shh:1.0.x-dev
+composer require bentools/shh:^0.1
 ```
 
 ## Configuration
