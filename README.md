@@ -97,7 +97,7 @@ parameters:
 ```yaml
 # config/packages/shh.yaml
 parameters:
-    env(SHH_SECRETS_FILE): '%kernel.project_dir%/.secrets/json'
+    env(SHH_SECRETS_FILE): '%kernel.project_dir%/.secrets.json'
 
 shh:
     private_key_file:     '%kernel.project_dir%/.keys/private.pem'
