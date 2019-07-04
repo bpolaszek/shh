@@ -25,7 +25,7 @@ Here are the key principles:
 ## Installation
 
 ```bash
-composer require bentools/shh:^0.1
+composer require bentools/shh:0.1.*
 ```
 
 ## Configuration
@@ -94,7 +94,7 @@ You can then use your secrets in your configuration files in the following way:
 ```yaml
 # config/services.yaml
 parameters:
-    my_secret: '%env(shh:key:my_secret:json:file:SECRETS_FILE)%'
+    my_secret: '%env(shh:key:my_secret:json:file:SHH_SECRETS_FILE)%'
 
 ```
 
