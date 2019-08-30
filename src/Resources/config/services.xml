@@ -35,6 +35,13 @@
             <tag name="console.command" />
         </service>
 
+        <service id="BenTools\Shh\Command\GenerateKeyPairCommand" class="BenTools\Shh\Command\GenerateKeyPairCommand">
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="BenTools\Shh\Shh"/>
+            <argument type="service" id="Symfony\Component\Filesystem\Filesystem"/>
+            <tag name="console.command" />
+        </service>
+
         <service id="BenTools\Shh\Command\RegisterSecretCommand" class="BenTools\Shh\Command\RegisterSecretCommand">
             <argument type="service" id="BenTools\Shh\Shh"/>
             <argument type="service" id="Symfony\Component\Filesystem\Filesystem"/>

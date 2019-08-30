@@ -56,7 +56,6 @@ final class Shh
     /**
      * @param string $payload
      * @return string
-     * @throws \Pikirasa\Exception
      */
     public function encrypt(string $payload): string
     {
@@ -73,7 +72,6 @@ final class Shh
     /**
      * @param string $base64EncodedPayload
      * @return string
-     * @hrows \Pikirasa\Exception
      */
     public function decrypt(string $base64EncodedPayload): string
     {

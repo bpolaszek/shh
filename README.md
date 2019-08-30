@@ -25,7 +25,7 @@ Here are the key principles:
 ## Installation
 
 ```bash
-composer require bentools/shh:0.1.*
+composer require bentools/shh:0.2.*
 ```
 
 ## Configuration
@@ -33,14 +33,9 @@ composer require bentools/shh:0.1.*
 * Add the bundle to your kernel. 
 * Create your keys:
     * Create a `shh` directory into your config directory `mkdir -p config/shh` (or `mkdir -p app/config/shh` for Symfony 3)
-    * Generate the private key file: `openssl genrsa -out config/shh/private.pem` 
-    * Generate the public key file: `openssl rsa -pubout -in config/shh/private.pem -out config/shh/public.pem` 
-    * Add `config/shh/private.pem` to your `.gitignore` and upload it to your production server
-
-* Alternatively, you can generate stronger keys with a passphrase:
-    * `openssl genrsa -out config/shh/private.pem -aes256 4096` 
-    * `openssl rsa -pubout -in config/shh/private.pem -out config/shh/public.pem` 
-    * Store the passphrase in the `SHH_PASSPHRASE` environment variable
+    * Generate your keys with `php bin/console shh:generate:keys`
+    * If you provided one, store the passphrase in the `SHH_PASSPHRASE` environment variable
+    * Add `config/shh/private.pem` (or `app/config/shh/private.pem` for Symfony 3) to your `.gitignore` and upload it to your production server.
 
 **And you're ready to go!** 
 
