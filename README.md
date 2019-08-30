@@ -32,14 +32,14 @@ composer require bentools/shh:0.1.*
 
 * Add the bundle to your kernel. 
 * Create your keys:
-    * Create the directory `mkdir .keys`
-    * Generate the private key file: `openssl genrsa -out .keys/private.pem` 
-    * Generate the public key file: `openssl rsa -pubout -in .keys/private.pem -out .keys/public.pem` 
-    * Add `.keys/private.pem` to your `.gitignore` and upload it to your production server
+    * Create a `shh` directory into your config directory `mkdir -p config/shh` (or `mkdir -p app/config/shh` for Symfony 3)
+    * Generate the private key file: `openssl genrsa -out config/shh/private.pem` 
+    * Generate the public key file: `openssl rsa -pubout -in config/shh/private.pem -out config/shh/public.pem` 
+    * Add `config/shh/private.pem` to your `.gitignore` and upload it to your production server
 
 * Alternatively, you can generate stronger keys with a passphrase:
-    * `openssl genrsa -out .keys/private.pem -aes256 4096` 
-    * `openssl rsa -pubout -in .keys/private.pem -out .keys/public.pem` 
+    * `openssl genrsa -out config/shh/private.pem -aes256 4096` 
+    * `openssl rsa -pubout -in config/shh/private.pem -out config/shh/public.pem` 
     * Store the passphrase in the `SHH_PASSPHRASE` environment variable
 
 **And you're ready to go!** 
@@ -51,7 +51,11 @@ If you want a different configuration, check out the [configuration reference](#
 ### Check the environment is properly configured
 
 ```bash
-bin/console shh:check -h
+bin/console shh:check // Will check that encryption / decryption work - both private and public keys are needed.
+```
+
+```bash
+bin/console shh:check --encrypt-only // Will check that encryption works - only public key is needed?
 ```
 
 ### Encrypt a value (public key needed)
@@ -106,8 +110,8 @@ parameters:
     env(SHH_SECRETS_FILE): '%kernel.project_dir%/.secrets.json'
 
 shh:
-    private_key_file:     '%kernel.project_dir%/.keys/private.pem'
-    public_key_file:      '%kernel.project_dir%/.keys/public.pem'
+    private_key_file:     '%kernel.project_dir%/config/shh/private.pem'
+    public_key_file:      '%kernel.project_dir%/config/shh/public.pem'
     passphrase:           '%env(SHH_PASSPHRASE)%'
 ```
 

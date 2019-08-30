@@ -6,14 +6,10 @@
 
     <services>
 
-        <service id="Pikirasa\RSA" class="Pikirasa\RSA">
+        <service id="BenTools\Shh\Shh" class="BenTools\Shh\Shh">
             <argument type="string">%shh.public_key_file%</argument>
             <argument type="string">%shh.private_key_file%</argument>
             <argument type="string">%shh.passphrase%</argument>
-        </service>
-
-        <service id="BenTools\Shh\Shh" class="BenTools\Shh\Shh">
-            <argument type="service" id="Pikirasa\RSA"/>
         </service>
 
         <service id="BenTools\Shh\ShhEnvVarProcessor" class="BenTools\Shh\ShhEnvVarProcessor">

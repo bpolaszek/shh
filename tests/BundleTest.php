@@ -31,6 +31,6 @@ final class BundleTest extends KernelTestCase
         $this->assertEquals(__DIR__.'/.keys/private.pem', self::$kernel->getContainer()->getParameter('shh.private_key_file'));
         $this->assertEquals(__DIR__.'/.keys/public.pem', self::$kernel->getContainer()->getParameter('shh.public_key_file'));
         $this->assertEquals('USNuclearCodeIs0000', self::$kernel->getContainer()->getParameter('shh.passphrase'));
-        $this->assertEquals('this_is_very_secret', self::$kernel->getContainer()->getParameter('some_encrypted_secret'));
+        $this->assertEquals('d0N4LD 7rUMP i5 4 L177lE 91RL!', self::$kernel->getContainer()->getParameter('some_encrypted_secret'));
     }
 }

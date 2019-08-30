@@ -15,7 +15,7 @@
         <env name="APP_SECRET" value="s$cretf0rt3st" />
         <env name="SHELL_VERBOSITY" value="-1" />
         <env name="SHH_PASSPHRASE" value="USNuclearCodeIs0000" />
-        <env name="A_BIG_SECRET" value="lvkWLXIA5zTYMbvNjCfnm21VUF+tdiRK0SDku9LT1AtqcoDTSq5nTs7jQaZVWnb0KFonPwzBQDuejqPzrX42wmY1mkkmv+TPlHzNG5G2KoffeCmKk7ejebN4ejmoaxm8AoQXCIh9Gfwst1Wyb3wc22hFU7MMa7ykoKNwGpyEPQLeaQGdOz6sN5yhz2v+cToZyrN4Jb4yuhhW98VbNhRhYzyW1qjqzN4kweJbV2qfSAf0WUkKYUx4PqXrMz2e46D39YI8w1Ukmc2pnWqRhxN8STRe5FzyUMqQCmIss6+JvAzVxra7/wQhRimb5t3SpXmqN117RdnCJ+OcqyFnrMRb6W55uFcbEEovFJQlI2fJA53snpKGL1y5yLsiTvXlOQMxwRWGzcpoOXmpicpNr3QZu0bY+P4FXBPOLwkQWXPrE/RwcPEDnVQDgoUa5pkkuUCE3xvGdD4pvbZ+X+P6imGGQJQ6OdaBP5nv6yMomIGN34aiG7ssIxGU0d5F2bV74DJNFlcW1wdeYabvbB/rD7pNlvHuvxZ8hTt/RVSG9+ghkQ83RNMj//pS+rPqZznTt9NWrjz4UVGxVVf7qmBDroPMBVPY9cDU5c6gOPTQLf3YkOnJy1sDmR3d6C6n+esBG2IZPf/l3uyRNeu39plg0YhnjLIhxS24i2r+mSOU9ANqaUA=" />
+        <env name="A_BIG_SECRET" value="SyDGxIkxFYoH0m2LNzxt72BkdagRpBozKu9yaWWX/ghRzmg4F6zb36GhNK2Tx7v958+ZBHk4py8n3gDxEFVrru3kSiclFY4/DLbxFWKEb9U6ufbBdWwN2uID45yvbSEzjVYd9ButbX/xoYnU+rQh1zshpT3pxLd/V5UGr6Yt4aapn9aPuQEgHQFC8/nqZ28n4mUM2lxKilfaouiNpEuJTaK5pswGL21j/QUAeZHAx9DEtGgSffHyr4kW0nJdTN4Kpt+gH0Y5e//LOLYTm3M0e8ZjMmNix/jSPDQbKtheD+dfV9F6dYuWVYf/9FnGPNulBw6yEoftYwlAAa4sQc30QfM4xPpaO9KvQKR5vIjxd6TpMKUohWou6qzgr2VQgyGqrDrXh+XgPDIODXnlxnHTqMQ02wGsiPSGTXwEec2INzp7IwluAdSDnlQvhGoYi9d/MxoRQtuF4sUiFH9EY63oxY/J2mk9sXbwhHXxrEm4JEQ28skZpLy2OPp0V35mFBftM7FLs5hYc7W+QcN8jYpwz4JNTg/3PefaOOlLhgFeFJmPG4ukRzUiiInRyYSzq7YaTNEE/xTPlVEhByMUFJjufIYY9zgtL03JVy+WJMHc2VC1SCO/CaxbswP+ZEFfx8aFwmPAAFKaa4/jvBFJaxDXjQD9jUg7Ow1bEbuFelvuBoc=" />
     </php>
 
     <testsuites>

@@ -25,11 +25,11 @@
   "require": {
     "php": ">=7.1",
     "ext-json": "*",
-    "vlucas/pikirasa": "^1.0.4",
+    "ext-openssl": "*",
     "symfony/dependency-injection": "~3.0|~4.0",
     "symfony/console": "~3.0|~4.0",
     "symfony/config": "~3.0|~4.0",
-    "symfony/http-kernel": "~3.0|~4.0",
+    "symfony/http-kernel": "^3.3|~4.0",
     "symfony/filesystem": "~3.4|~4.0"
   },
   "require-dev": {
