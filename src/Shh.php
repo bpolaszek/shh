@@ -35,8 +35,8 @@ final class Shh
      */
     public function __construct(string $publicKey, ?string $privateKey = null, ?string $passphrase = null)
     {
-        $this->publicKey = (0 === \strpos($publicKey, '/')) ? 'file://' .$publicKey : $publicKey;
-        $this->privateKey = (0 === \strpos($privateKey, '/')) ? 'file://' .$privateKey : $privateKey;
+        $this->publicKey = self::normalize($publicKey);
+        $this->privateKey = self::normalize($privateKey);
         $this->passphrase = $passphrase;
     }
 
@@ -119,5 +119,34 @@ final class Shh
         $publicKey = \openssl_pkey_get_details($resource)['key'];
 
         return [$publicKey, $privateKey];
+    }
+
+    /**
+     * Change passphrase and return a new private key.
+     *
+     * @param string      $privateKey
+     * @param string|null $oldPassphrase
+     * @param string|null $newPassphrase
+     * @return string
+     */
+    public static function changePassphrase(string $privateKey, ?string $oldPassphrase, ?string $newPassphrase): string
+    {
+        $resource = \openssl_pkey_get_private(self::normalize($privateKey), $oldPassphrase);
+        $success = @\openssl_pkey_export($resource, $newPrivateKey, $newPassphrase);
+
+        if (false === $success) {
+            throw new ShhException('Wrong passphrase or inexistent private key.');
+        }
+
+        return $newPrivateKey;
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    public static function normalize(string $key): string
+    {
+        return (0 === \strpos($key, '/')) ? 'file://'.$key : $key;
     }
 }
