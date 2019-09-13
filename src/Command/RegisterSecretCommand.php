@@ -139,7 +139,7 @@ final class RegisterSecretCommand extends Command
             <<<EOF
 # config/services.yaml
 parameters:
-    {$key}: '%env(shh:key:{$key}:json:file:SECRETS_FILE)%'
+    {$key}: '%env(shh:key:{$key}:json:file:SHH_SECRETS_FILE)%'
     
 EOF
         );
