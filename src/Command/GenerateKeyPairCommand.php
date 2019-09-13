@@ -82,7 +82,7 @@ final class GenerateKeyPairCommand extends Command
         $passphrase = $input->getOption('passphrase');
         $dir = $this->getDirectory();
 
-        if ($this->fs->exists($dir.'/private.pem') || $this->fs->exists($dir.'/private.pem')) {
+        if ($this->fs->exists($dir.'/private.pem') || $this->fs->exists($dir.'/public.pem')) {
             $io->error(\sprintf("Keys are already defined in %s.", $dir));
 
             return 1;
