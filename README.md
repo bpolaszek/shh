@@ -17,11 +17,11 @@ Then I came up with the following question: why isn't there a PHP implementation
 
 Here are the key principles:
 
-* Storing secrets in environment variables will expose them through `phpinfo()`, reports, logs, and child processes.
-* Common encrypt/decrypt strategies require a _key_ or passphrase which works both ways. The problem is, as the key is needed for the application to work, any developer that has access to the project needs that key and can access any secret in plain text.
-* The approach of Matthias is different: any developer can _encrypt_ secrets, but only the production server is able to _decrypt_ them.
-* With that approach, the **public key** (needed to encrypt) is commited to VCS, while the **private key** (needed to decrypt) remains property of the production server.
-* Encrypted secrets can thus be committed to VCS. Only the production server will be able to read them.
+* Storing secrets in environment variables will actually expose them through `phpinfo()`, reports, logs, and child processes.
+* Thanks to Symfony's [Env Var Processors](https://symfony.com/doc/current/configuration/env_var_processors.html), _Shh_ will expose them **encrypted**. They will be decrypted at the very last moment.
+* Private key + an optional passphrase are required to decrypt secrets. They SHOULD be _.gitgnored_.
+* You can then commit encrypted secrets to VCS as long as the private key is stored and communicated safely.
+* You can change your passphrase a at any time.
 
 ## Installation
 
@@ -31,10 +31,10 @@ composer require bentools/shh:0.3.*
 
 ## Configuration
 
-* Add the bundle to your kernel. 
-* Create your keys:
+* Add the bundle to your kernel (come on, you're not using Flex?). 
+* Generate your keys:
     * Create a `shh` directory into your config directory `mkdir -p config/shh` (or `mkdir -p app/config/shh` for Symfony 3)
-    * Generate your keys with `php bin/console shh:generate:keys`
+    * Run`php bin/console shh:generate:keys`
     * If you provided one, store the passphrase in the `SHH_PASSPHRASE` environment variable
     * Add `config/shh/private.pem` (or `app/config/shh/private.pem` for Symfony 3) to your `.gitignore` and upload it to your production server.
 
