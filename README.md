@@ -25,7 +25,7 @@ Here are the key principles:
 ## Installation
 
 ```bash
-composer require bentools/shh:0.2.*
+composer require bentools/shh:0.3.*
 ```
 
 ## Configuration
@@ -85,7 +85,7 @@ This file can safely be committed to VCS (as soon as the private key isn't).
 To encrypt and register a secret in this file, run the following command:
 
 ```bash
-bin/console shh:register-secret my_secret # You will be prompted for the value of "my_secret"
+bin/console shh:register:secret my_secret # You will be prompted for the value of "my_secret"
 ```
 
 You can then use your secrets in your configuration files in the following way:
@@ -96,6 +96,19 @@ parameters:
     my_secret: '%env(shh:key:my_secret:json:file:SHH_SECRETS_FILE)%'
 
 ```
+
+### Changing passphrase
+
+You can change your passphrase if needed: this will result in a new private key being generated. The public key remains unchanged. 
+
+```bash
+bin/console shh:change:passphrase
+```
+
+As a result, a new private key will be regenerated. You just have to update it everywhere it is used,
+and update the `SHH_PASSPHRASE` environment variable as well.
+
+You may do this every time an employee leaves the company, for instance.
 
 ## Configuration reference
 
@@ -115,8 +128,6 @@ shh:
 ```bash
 ./vendor/bin/phpunit
 ```
-
-More tests are welcome.
 
 ## Feedback
 

@@ -2,6 +2,9 @@
 
 namespace BenTools\Shh;
 
+/**
+ * @internal
+ */
 final class ShhException extends \RuntimeException
 {
     /**

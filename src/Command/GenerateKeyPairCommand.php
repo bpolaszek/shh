@@ -8,34 +8,26 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpKernel\Kernel;
 
 final class GenerateKeyPairCommand extends Command
 {
     protected static $defaultName = 'shh:generate:keys';
 
     /**
-     * @var ContainerInterface
+     * @var string
      */
-    private $container;
-
-    /**
-     * @var Shh
-     */
-    private $shh;
+    private $keysDirectory;
 
     /**
      * @var Filesystem
      */
     private $fs;
 
-    public function __construct(ContainerInterface $container, Shh $shh, Filesystem $fs)
+    public function __construct(string $keysDirectory, Filesystem $fs)
     {
         parent::__construct();
-        $this->container = $container;
-        $this->shh = $shh;
+        $this->keysDirectory = $keysDirectory;
         $this->fs = $fs;
     }
 
@@ -80,7 +72,7 @@ final class GenerateKeyPairCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         $passphrase = $input->getOption('passphrase');
-        $dir = $this->getDirectory();
+        $dir = $this->keysDirectory;
 
         if ($this->fs->exists($dir.'/private.pem') || $this->fs->exists($dir.'/public.pem')) {
             $io->error(\sprintf("Keys are already defined in %s.", $dir));
@@ -99,17 +91,5 @@ final class GenerateKeyPairCommand extends Command
         if (null !== $passphrase) {
             $io->comment('Don\'t forget to report your passphrase into the SHH_PASSPHRASE environment variable.');
         }
-    }
-
-    /**
-     * @return string
-     */
-    private function getDirectory()
-    {
-        if (Kernel::MAJOR_VERSION < 4) {
-            return $this->container->getParameter('kernel.project_dir').'/app/config/shh';
-        }
-
-        return $this->container->getParameter('kernel.project_dir').'/config/shh';
     }
 }
