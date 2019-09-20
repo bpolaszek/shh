@@ -36,7 +36,7 @@ final class Shh
     public function __construct(string $publicKey, ?string $privateKey = null, ?string $passphrase = null)
     {
         $this->publicKey = self::normalize($publicKey);
-        $this->privateKey = self::normalize($privateKey);
+        $this->privateKey = null === $privateKey ? null : self::normalize($privateKey);
         $this->passphrase = $passphrase;
     }
 
@@ -105,7 +105,7 @@ final class Shh
      * @param array       $config
      * @return array - [privateKey, publicKey]
      */
-    public static function generateKeyPair(?string $passphrase = null, array $config = self::DEFAULT_OPENSSL_GENERATION_CONFIGURATION)
+    public static function generateKeyPair(?string $passphrase = null, array $config = self::DEFAULT_OPENSSL_GENERATION_CONFIGURATION): array
     {
         $resource = \openssl_pkey_new($config)
             or ShhException::throwFromLastOpenSSLError('Unable to open resource.');
@@ -145,7 +145,7 @@ final class Shh
      * @param string $key
      * @return string
      */
-    public static function normalize(string $key): string
+    private static function normalize(string $key): string
     {
         return (0 === \strpos($key, '/')) ? 'file://'.$key : $key;
     }

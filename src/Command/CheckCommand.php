@@ -11,13 +11,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 final class CheckCommand extends Command
 {
-
     protected static $defaultName = 'shh:check';
-
-    /**
-     * @var Shh
-     */
-    private $shh;
 
     /**
      * @var string
@@ -37,9 +31,8 @@ final class CheckCommand extends Command
     /**
      * CheckCommand constructor.
      */
-    public function __construct(Shh $shh, string $publicKeyFile, string $privateKeyFile, ?string $passphrase = null)
+    public function __construct(string $publicKeyFile, ?string $privateKeyFile, ?string $passphrase = null)
     {
-        $this->shh = $shh;
         $this->publicKeyFile = $publicKeyFile;
         $this->privateKeyFile = $privateKeyFile;
         $this->passphrase = $passphrase;
@@ -58,6 +51,7 @@ final class CheckCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
+        $shh = new Shh($this->publicKeyFile, $this->privateKeyFile, $this->passphrase);
 
         $errors = [];
 
@@ -77,7 +71,7 @@ final class CheckCommand extends Command
 
         if (false === $input->getOption('decrypt-only')) {
             try {
-                $encrypted = $this->shh->encrypt('foo');
+                $encrypted = $shh->encrypt('foo');
             } catch (\Throwable $e) {
                 $errors[] = 'Encrypting a payload failed.';
                 $io->error(\end($errors));
@@ -88,7 +82,7 @@ final class CheckCommand extends Command
 
             if (isset($encrypted) && false === $input->getOption('encrypt-only')) {
                 try {
-                    $decrypted = $this->shh->decrypt($encrypted);
+                    $decrypted = $shh->decrypt($encrypted);
 
                     if ('foo' !== $decrypted) {
                         throw new \RuntimeException('Unexpected decrypted value.');
@@ -105,7 +99,7 @@ final class CheckCommand extends Command
 
         if (null !== $input->getOption('payload')) {
             try {
-                $this->shh->decrypt($input->getOption('payload'));
+                $shh->decrypt($input->getOption('payload'));
             } catch (\Throwable $e) {
                 $errors[] = 'The given payload could not be decrypted.';
                 $io->error(\end($errors));

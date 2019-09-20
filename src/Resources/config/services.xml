@@ -28,7 +28,6 @@
         </service>
 
         <service id="BenTools\Shh\Command\CheckCommand" class="BenTools\Shh\Command\CheckCommand">
-            <argument type="service" id="BenTools\Shh\Shh"/>
             <argument type="string">%shh.public_key_file%</argument>
             <argument type="string">%shh.private_key_file%</argument>
             <argument type="string">%shh.passphrase%</argument>
@@ -36,8 +35,7 @@
         </service>
 
         <service id="BenTools\Shh\Command\GenerateKeyPairCommand" class="BenTools\Shh\Command\GenerateKeyPairCommand">
-            <argument type="service" id="service_container"/>
-            <argument type="service" id="BenTools\Shh\Shh"/>
+            <argument type="string">%shh.keys_dir%</argument>
             <argument type="service" id="Symfony\Component\Filesystem\Filesystem"/>
             <tag name="console.command" />
         </service>
@@ -50,9 +48,10 @@
         </service>
 
         <service id="BenTools\Shh\Command\ChangePassphraseCommand" class="BenTools\Shh\Command\ChangePassphraseCommand">
-            <argument type="service" id="service_container"/>
             <argument type="service" id="BenTools\Shh\Shh"/>
             <argument type="service" id="Symfony\Component\Filesystem\Filesystem"/>
+            <argument type="string">%shh.keys_dir%</argument>
+            <argument type="string">%shh.private_key_file%</argument>
             <tag name="console.command" />
         </service>
 

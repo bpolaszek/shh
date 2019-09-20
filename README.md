@@ -85,7 +85,7 @@ This file can safely be committed to VCS (as soon as the private key isn't).
 To encrypt and register a secret in this file, run the following command:
 
 ```bash
-bin/console shh:register-secret my_secret # You will be prompted for the value of "my_secret"
+bin/console shh:register:secret my_secret # You will be prompted for the value of "my_secret"
 ```
 
 You can then use your secrets in your configuration files in the following way:
@@ -128,8 +128,6 @@ shh:
 ```bash
 ./vendor/bin/phpunit
 ```
-
-More tests are welcome.
 
 ## Feedback
 

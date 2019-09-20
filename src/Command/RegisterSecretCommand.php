@@ -13,7 +13,7 @@ use Symfony\Component\Filesystem\Filesystem;
 
 final class RegisterSecretCommand extends Command
 {
-    protected static $defaultName = 'shh:register-secret';
+    protected static $defaultName = 'shh:register:secret';
 
     /**
      * @var Shh
@@ -40,10 +40,14 @@ final class RegisterSecretCommand extends Command
 
     protected function configure()
     {
-        $this->setDescription(sprintf('Register a new secret into %s', $this->secretsFile))
+        $this->setDescription('Register a new secret.')
             ->addArgument('key', InputArgument::REQUIRED, 'The secret\'s key name.')
             ->addArgument('value', InputArgument::REQUIRED, 'The secret\'s value.')
-            ->addOption('no-encrypt', null, InputOption::VALUE_NONE, 'If the value should not be encrypted.');
+            ->addOption('no-encrypt', null, InputOption::VALUE_NONE, 'If the value should not be encrypted.')
+            ->setAliases([
+                'shh:register-secret', // Avoid BC breaks
+            ])
+        ;
     }
 
     protected function interact(InputInterface $input, OutputInterface $output)
@@ -74,10 +78,6 @@ final class RegisterSecretCommand extends Command
                 )
             );
         }
-
-        if (false === $input->getOption('no-encrypt')) {
-            $input->setOption('no-encrypt', !$io->confirm('Should I encrypt this value?'));
-        }
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -106,7 +106,7 @@ final class RegisterSecretCommand extends Command
             $secrets = [];
         } else {
             $content = \file_get_contents($this->secretsFile);
-            $secrets = \json_decode($content, true);
+            $secrets = '' === $content ? [] : \json_decode($content, true);
             if (\JSON_ERROR_NONE !== \json_last_error()) {
                 $io->error('json_decode error: ' . \json_last_error_msg());
 

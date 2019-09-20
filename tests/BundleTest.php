@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 final class BundleTest extends KernelTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         static::bootKernel();
     }

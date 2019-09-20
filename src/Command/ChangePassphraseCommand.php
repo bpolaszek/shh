@@ -17,11 +17,6 @@ final class ChangePassphraseCommand extends Command
     protected static $defaultName = 'shh:change:passphrase';
 
     /**
-     * @var ContainerInterface
-     */
-    private $container;
-
-    /**
      * @var Shh
      */
     private $shh;
@@ -31,18 +26,29 @@ final class ChangePassphraseCommand extends Command
      */
     private $fs;
 
-    public function __construct(ContainerInterface $container, Shh $shh, Filesystem $fs)
+    /**
+     * @var string
+     */
+    private $keysDir;
+
+    /**
+     * @var string|null
+     */
+    private $privateKey;
+
+    public function __construct(Shh $shh, Filesystem $fs, string $keysDir, ?string $privateKey)
     {
         parent::__construct();
-        $this->container = $container;
         $this->shh = $shh;
         $this->fs = $fs;
+        $this->keysDir = $keysDir;
+        $this->privateKey = $privateKey;
     }
 
     protected function configure()
     {
         $this
-            ->setDescription('Generate public/private keys.')
+            ->setDescription('Change passphrase, generate a new private key.')
             ->addOption('old-passphrase', '', InputOption::VALUE_OPTIONAL, 'Your current passhrase.')
             ->addOption('new-passphrase', '', InputOption::VALUE_OPTIONAL, '(Optional) your new passhrase.')
             ->addOption('overwrite', '', InputOption::VALUE_NONE, 'Overwrite the existing key.')
@@ -97,10 +103,16 @@ final class ChangePassphraseCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $passphrase = $input->getOption('new-passphrase');
-        $dir = $this->getDirectory();
+        if (null === $this->privateKey) {
+            $io->error('Private key was not found.');
 
-        $oldPrivateKey = $this->container->getParameter('shh.private_key_file');
+            return 1;
+        }
+
+        $passphrase = $input->getOption('new-passphrase');
+        $dir = $this->keysDir;
+
+        $oldPrivateKey = $this->privateKey;
         $newPrivateKey = Shh::changePassphrase($oldPrivateKey, $input->getOption('old-passphrase'), $passphrase);
 
         $io->comment('Here is your new private key:');
@@ -113,17 +125,5 @@ final class ChangePassphraseCommand extends Command
         }
 
         $io->caution('Don\'t forget to report your new passphrase into the SHH_PASSPHRASE environment variable, and to deploy the new private key to everywhere it\'s needed!');
-    }
-
-    /**
-     * @return string
-     */
-    private function getDirectory()
-    {
-        if (Kernel::MAJOR_VERSION < 4) {
-            return $this->container->getParameter('kernel.project_dir') . '/app/config/shh';
-        }
-
-        return $this->container->getParameter('kernel.project_dir') . '/config/shh';
     }
 }
