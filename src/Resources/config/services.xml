@@ -41,9 +41,7 @@
         </service>
 
         <service id="BenTools\Shh\Command\RegisterSecretCommand" class="BenTools\Shh\Command\RegisterSecretCommand">
-            <argument type="service" id="BenTools\Shh\Shh"/>
-            <argument type="service" id="Symfony\Component\Filesystem\Filesystem"/>
-            <argument type="string">%env(SHH_SECRETS_FILE)%</argument>
+            <argument type="service" id="BenTools\Shh\SecretStorage\JsonFileSecretStorage"/>
             <tag name="console.command" />
         </service>
 
@@ -53,6 +51,11 @@
             <argument type="string">%shh.keys_dir%</argument>
             <argument type="string">%shh.private_key_file%</argument>
             <tag name="console.command" />
+        </service>
+
+        <service id="BenTools\Shh\SecretStorage\JsonFileSecretStorage" class="BenTools\Shh\SecretStorage\JsonFileSecretStorage">
+            <argument type="service" id="BenTools\Shh\Shh"/>
+            <argument type="string">%env(SHH_SECRETS_FILE)%</argument>
         </service>
 
     </services>

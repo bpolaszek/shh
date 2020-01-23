@@ -3,6 +3,7 @@
 namespace BenTools\Shh\Tests\Command;
 
 use BenTools\Shh\Command\RegisterSecretCommand;
+use BenTools\Shh\SecretStorage\JsonFileSecretStorage;
 use BenTools\Shh\Shh;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
@@ -21,7 +22,7 @@ class RegisterSecretCommandTest extends TestCase
         [$publicKey, $privateKey] = Shh::generateKeyPair();
         $shh = new Shh($publicKey, $privateKey);
         $application = new Application();
-        $application->add(new RegisterSecretCommand($shh, new Filesystem(), $secretsFile));
+        $application->add(new RegisterSecretCommand(new JsonFileSecretStorage($shh, $secretsFile)));
         $command = $application->find('shh:register:secret');
         $commandTester = new CommandTester($command);
         $commandTester->setInputs([
@@ -47,7 +48,7 @@ class RegisterSecretCommandTest extends TestCase
         [$publicKey, $privateKey] = Shh::generateKeyPair();
         $shh = new Shh($publicKey, $privateKey);
         $application = new Application();
-        $application->add(new RegisterSecretCommand($shh, new Filesystem(), $secretsFile));
+        $application->add(new RegisterSecretCommand(new JsonFileSecretStorage($shh, $secretsFile)));
         $command = $application->find('shh:register:secret');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
