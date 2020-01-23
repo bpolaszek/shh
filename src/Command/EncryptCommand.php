@@ -51,7 +51,7 @@ final class EncryptCommand extends Command
         }
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -66,5 +66,7 @@ final class EncryptCommand extends Command
         }
 
         $io->writeln($encrypted);
+
+        return 0;
     }
 }

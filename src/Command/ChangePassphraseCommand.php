@@ -99,7 +99,7 @@ final class ChangePassphraseCommand extends Command
      * @param OutputInterface $output
      * @return int|void|null
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -125,5 +125,7 @@ final class ChangePassphraseCommand extends Command
         }
 
         $io->caution('Don\'t forget to report your new passphrase into the SHH_PASSPHRASE environment variable, and to deploy the new private key to everywhere it\'s needed!');
+
+        return 0;
     }
 }

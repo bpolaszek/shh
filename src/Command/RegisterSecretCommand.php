@@ -67,7 +67,7 @@ final class RegisterSecretCommand extends Command
         }
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -89,8 +89,8 @@ final class RegisterSecretCommand extends Command
 
         try {
             if ($this->storage->has($key) && false === $io->confirm(
-                    sprintf('Key "%s" already exists. Overwrite?', $key)
-                )) {
+                sprintf('Key "%s" already exists. Overwrite?', $key)
+            )) {
                 $io->success('Your secrets file was left intact.');
 
                 return 0;
@@ -120,6 +120,8 @@ parameters:
     
 EOF
         );
+
+        return 0;
     }
 
     /**

@@ -67,7 +67,7 @@ final class GenerateKeyPairCommand extends Command
      * @param OutputInterface $output
      * @return int|void|null
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -91,5 +91,7 @@ final class GenerateKeyPairCommand extends Command
         if (null !== $passphrase) {
             $io->comment('Don\'t forget to report your passphrase into the SHH_PASSPHRASE environment variable.');
         }
+
+        return 0;
     }
 }
