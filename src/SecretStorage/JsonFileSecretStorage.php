@@ -86,5 +86,4 @@ final class JsonFileSecretStorage implements SecretStorageInterface
     {
         return \array_keys($this->open());
     }
-
 }

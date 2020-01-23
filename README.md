@@ -26,19 +26,19 @@ Here are the key principles:
 ## Installation
 
 ```bash
-composer require bentools/shh:0.3.*
+composer require bentools/shh:0.4.*
 ```
 
 ## Configuration
 
-* Add the bundle to your kernel (come on, you're not using Flex?). 
+* Add the bundle to your kernel (come on, you're not using Flex?).
 * Generate your keys:
     * Create a `shh` directory into your config directory `mkdir -p config/shh` (or `mkdir -p app/config/shh` for Symfony 3)
     * Run`php bin/console shh:generate:keys`
     * If you provided one, store the passphrase in the `SHH_PASSPHRASE` environment variable
     * Add `config/shh/private.pem` (or `app/config/shh/private.pem` for Symfony 3) to your `.gitignore` and upload it to your production server.
 
-**And you're ready to go!** 
+**And you're ready to go!**
 
 If you want a different configuration, check out the [configuration reference](#configuration-reference) to discover the available options.
 
@@ -100,7 +100,7 @@ parameters:
 
 ### Changing passphrase
 
-You can change your passphrase if needed: this will result in a new private key being generated. The public key remains unchanged. 
+You can change your passphrase if needed: this will result in a new private key being generated. The public key remains unchanged.
 
 ```bash
 bin/console shh:change:passphrase

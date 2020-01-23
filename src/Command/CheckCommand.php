@@ -48,7 +48,7 @@ final class CheckCommand extends Command
             ->addOption('payload', null, InputOption::VALUE_OPTIONAL, '(Optionnal) Check this payload for decryption.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $shh = new Shh($this->publicKeyFile, $this->privateKeyFile, $this->passphrase);
