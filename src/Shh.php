@@ -116,8 +116,9 @@ final class Shh
      * @param array       $config
      * @return array - [privateKey, publicKey]
      */
-    public static function generateKeyPair(?string $passphrase = null, array $config = self::DEFAULT_OPENSSL_GENERATION_CONFIGURATION): array
+    public static function generateKeyPair(?string $passphrase = null, array $config = []): array
     {
+        $config += self::DEFAULT_OPENSSL_GENERATION_CONFIGURATION;
         $resource = \openssl_pkey_new($config)
             or ShhException::throwFromLastOpenSSLError('Unable to open resource.');
 

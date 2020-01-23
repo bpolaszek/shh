@@ -138,6 +138,15 @@ class ShhTest extends TestCase
     /**
      * @test
      */
+    public function i_can_change_generation_options()
+    {
+        $this->assertEquals(800, \strlen(Shh::generateKeyPair()[0]));
+        $this->assertEquals(182, \strlen(Shh::generateKeyPair(null, ['private_key_bits' => 512])[0]));
+    }
+
+    /**
+     * @test
+     */
     public function i_can_change_my_passphrase()
     {
         [$publicKey, $privateKey] = Shh::generateKeyPair();
