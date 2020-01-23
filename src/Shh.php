@@ -53,6 +53,16 @@ final class Shh
         return $this->resource;
     }
 
+    private function freeResource(): void
+    {
+        if (null === $this->resource) {
+            return;
+        }
+
+        \openssl_free_key($this->resource);
+        $this->resource = null;
+    }
+
     /**
      * @param string $payload
      * @return string
@@ -61,7 +71,8 @@ final class Shh
     {
         $resource = $this->getPublicKeyAsResource();
         $success = \openssl_public_encrypt($payload, $encryptedData, $resource, \OPENSSL_PKCS1_OAEP_PADDING);
-        \openssl_free_key($resource);
+        $this->freeResource();
+
         if (!$success) {
             throw new ShhException("Encryption failed. Ensure you are using a PUBLIC key.");
         }

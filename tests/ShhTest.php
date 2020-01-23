@@ -32,6 +32,23 @@ class ShhTest extends TestCase
             $shh->decrypt($encrypted);
         }
     }
+
+    /**
+     * @test
+     */
+    public function it_can_encrypt_several_secrets()
+    {
+        $shh = new Shh(...Shh::generateKeyPair());
+        $secrets = [
+            'foo',
+            'bar',
+        ];
+
+        $this->assertEquals($secrets, \array_map(function(string $secret) use ($shh) {
+            return $shh->decrypt($shh->encrypt($secret));
+        }, $secrets));
+    }
+
     /**
      * @test
      * @dataProvider matrix
