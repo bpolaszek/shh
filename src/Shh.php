@@ -114,7 +114,7 @@ final class Shh
      *
      * @param string|null $passphrase
      * @param array       $config
-     * @return array - [privateKey, publicKey]
+     * @return array - [publicKey, privateKey]
      */
     public static function generateKeyPair(?string $passphrase = null, array $config = []): array
     {
