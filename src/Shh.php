@@ -59,7 +59,6 @@ final class Shh
             return;
         }
 
-        \openssl_free_key($this->resource);
         $this->resource = null;
     }
 
@@ -100,7 +99,6 @@ final class Shh
             or ShhException::throwFromLastOpenSSLError('Private key seems corrupted.');
 
         $success = \openssl_private_decrypt($payload, $decryptedData, $resource, \OPENSSL_PKCS1_OAEP_PADDING);
-        \openssl_free_key($resource);
 
         if (!$success) {
             throw new ShhException("Decryption failed. Ensure you are using (1) A PRIVATE key, and (2) the correct one.");
