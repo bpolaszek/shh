@@ -2,6 +2,8 @@
 
 namespace BenTools\Shh;
 
+use OpenSSLAsymmetricKey;
+
 final class Shh
 {
     private const DEFAULT_OPENSSL_GENERATION_CONFIGURATION = [
@@ -26,7 +28,7 @@ final class Shh
     private $passphrase;
 
     /**
-     * @var resource
+     * @var resource|OpenSSLAsymmetricKey|null
      */
     private $resource;
 
@@ -41,7 +43,7 @@ final class Shh
     }
 
     /**
-     * @return resource
+     * @return resource|OpenSSLAsymmetricKey
      */
     private function getPublicKeyAsResource()
     {
@@ -59,7 +61,6 @@ final class Shh
             return;
         }
 
-        \openssl_free_key($this->resource);
         $this->resource = null;
     }
 
@@ -92,7 +93,7 @@ final class Shh
 
         $payload = \base64_decode($base64EncodedPayload);
 
-        if (false === $payload) {
+        if (false === $payload) { // @phpstan-ignore-line
             throw new ShhException('Encrypted payload was not provided as Base64.');
         }
 
@@ -100,7 +101,6 @@ final class Shh
             or ShhException::throwFromLastOpenSSLError('Private key seems corrupted.');
 
         $success = \openssl_private_decrypt($payload, $decryptedData, $resource, \OPENSSL_PKCS1_OAEP_PADDING);
-        \openssl_free_key($resource);
 
         if (!$success) {
             throw new ShhException("Decryption failed. Ensure you are using (1) A PRIVATE key, and (2) the correct one.");

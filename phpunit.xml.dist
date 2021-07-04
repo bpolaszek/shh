@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!-- https://phpunit.de/manual/current/en/appendixes.configuration.html -->
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/6.1/phpunit.xsd"
-         backupGlobals="false"
-         colors="true"
-         bootstrap="vendor/autoload.php"
->
-    <php>
-        <ini name="error_reporting" value="-1" />
-        <env name="KERNEL_CLASS" value="BenTools\Shh\Tests\Classes\TestKernel" />
-        <env name="APP_ENV" value="test" />
-        <env name="APP_DEBUG" value="1" />
-        <env name="APP_SECRET" value="s$cretf0rt3st" />
-        <env name="SHELL_VERBOSITY" value="-1" />
-        <env name="SHH_PASSPHRASE" value="USNuclearCodeIs0000" />
-        <env name="A_BIG_SECRET" value="SyDGxIkxFYoH0m2LNzxt72BkdagRpBozKu9yaWWX/ghRzmg4F6zb36GhNK2Tx7v958+ZBHk4py8n3gDxEFVrru3kSiclFY4/DLbxFWKEb9U6ufbBdWwN2uID45yvbSEzjVYd9ButbX/xoYnU+rQh1zshpT3pxLd/V5UGr6Yt4aapn9aPuQEgHQFC8/nqZ28n4mUM2lxKilfaouiNpEuJTaK5pswGL21j/QUAeZHAx9DEtGgSffHyr4kW0nJdTN4Kpt+gH0Y5e//LOLYTm3M0e8ZjMmNix/jSPDQbKtheD+dfV9F6dYuWVYf/9FnGPNulBw6yEoftYwlAAa4sQc30QfM4xPpaO9KvQKR5vIjxd6TpMKUohWou6qzgr2VQgyGqrDrXh+XgPDIODXnlxnHTqMQ02wGsiPSGTXwEec2INzp7IwluAdSDnlQvhGoYi9d/MxoRQtuF4sUiFH9EY63oxY/J2mk9sXbwhHXxrEm4JEQ28skZpLy2OPp0V35mFBftM7FLs5hYc7W+QcN8jYpwz4JNTg/3PefaOOlLhgFeFJmPG4ukRzUiiInRyYSzq7YaTNEE/xTPlVEhByMUFJjufIYY9zgtL03JVy+WJMHc2VC1SCO/CaxbswP+ZEFfx8aFwmPAAFKaa4/jvBFJaxDXjQD9jUg7Ow1bEbuFelvuBoc=" />
-    </php>
-
-    <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
-        </testsuite>
-    </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory>src</directory>
-        </whitelist>
-    </filter>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" backupGlobals="false" colors="true" bootstrap="vendor/autoload.php">
+  <coverage>
+    <include>
+      <directory>src</directory>
+    </include>
+  </coverage>
+  <php>
+    <ini name="error_reporting" value="-1"/>
+    <env name="KERNEL_CLASS" value="BenTools\Shh\Tests\Classes\TestKernel"/>
+    <env name="APP_ENV" value="test"/>
+    <env name="APP_DEBUG" value="1"/>
+    <env name="APP_SECRET" value="s$cretf0rt3st"/>
+    <env name="SHELL_VERBOSITY" value="-1"/>
+    <env name="SHH_PASSPHRASE" value="USNuclearCodeIs0000"/>
+    <env name="A_BIG_SECRET" value="SyDGxIkxFYoH0m2LNzxt72BkdagRpBozKu9yaWWX/ghRzmg4F6zb36GhNK2Tx7v958+ZBHk4py8n3gDxEFVrru3kSiclFY4/DLbxFWKEb9U6ufbBdWwN2uID45yvbSEzjVYd9ButbX/xoYnU+rQh1zshpT3pxLd/V5UGr6Yt4aapn9aPuQEgHQFC8/nqZ28n4mUM2lxKilfaouiNpEuJTaK5pswGL21j/QUAeZHAx9DEtGgSffHyr4kW0nJdTN4Kpt+gH0Y5e//LOLYTm3M0e8ZjMmNix/jSPDQbKtheD+dfV9F6dYuWVYf/9FnGPNulBw6yEoftYwlAAa4sQc30QfM4xPpaO9KvQKR5vIjxd6TpMKUohWou6qzgr2VQgyGqrDrXh+XgPDIODXnlxnHTqMQ02wGsiPSGTXwEec2INzp7IwluAdSDnlQvhGoYi9d/MxoRQtuF4sUiFH9EY63oxY/J2mk9sXbwhHXxrEm4JEQ28skZpLy2OPp0V35mFBftM7FLs5hYc7W+QcN8jYpwz4JNTg/3PefaOOlLhgFeFJmPG4ukRzUiiInRyYSzq7YaTNEE/xTPlVEhByMUFJjufIYY9zgtL03JVy+WJMHc2VC1SCO/CaxbswP+ZEFfx8aFwmPAAFKaa4/jvBFJaxDXjQD9jUg7Ow1bEbuFelvuBoc="/>
+  </php>
+  <testsuites>
+    <testsuite name="Project Test Suite">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>
