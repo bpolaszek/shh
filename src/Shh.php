@@ -2,6 +2,8 @@
 
 namespace BenTools\Shh;
 
+use OpenSSLAsymmetricKey;
+
 final class Shh
 {
     private const DEFAULT_OPENSSL_GENERATION_CONFIGURATION = [
@@ -26,7 +28,7 @@ final class Shh
     private $passphrase;
 
     /**
-     * @var resource
+     * @var resource|OpenSSLAsymmetricKey|null
      */
     private $resource;
 
@@ -41,7 +43,7 @@ final class Shh
     }
 
     /**
-     * @return resource
+     * @return resource|OpenSSLAsymmetricKey
      */
     private function getPublicKeyAsResource()
     {
@@ -91,7 +93,7 @@ final class Shh
 
         $payload = \base64_decode($base64EncodedPayload);
 
-        if (false === $payload) {
+        if (false === $payload) { // @phpstan-ignore-line
             throw new ShhException('Encrypted payload was not provided as Base64.');
         }
 
