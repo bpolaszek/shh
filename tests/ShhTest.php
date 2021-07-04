@@ -23,7 +23,7 @@ class ShhTest extends TestCase
 
         $shh = new Shh($publicKey, $privateKey, $passphrase);
         $encrypted = $shh->encrypt('foo');
-        $this->assertInternalType('string', $encrypted);
+        $this->assertIsString($encrypted);
 
         if ($decryptionEnabled) {
             $this->assertEquals('foo', $shh->decrypt($encrypted));
