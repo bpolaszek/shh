@@ -1,8 +1,7 @@
 [![Latest Stable Version](https://poser.pugx.org/bentools/shh/v/stable)](https://packagist.org/packages/bentools/shh)
 [![License](https://poser.pugx.org/bentools/shh/license)](https://packagist.org/packages/bentools/shh)
-[![Build Status](https://img.shields.io/travis/bpolaszek/shh/master.svg?style=flat-square)](https://travis-ci.org/bpolaszek/shh)
-[![Coverage Status](https://coveralls.io/repos/github/bpolaszek/shh/badge.svg?branch=master)](https://coveralls.io/github/bpolaszek/shh?branch=master)
-[![Quality Score](https://img.shields.io/scrutinizer/g/bpolaszek/shh.svg?style=flat-square)](https://scrutinizer-ci.com/g/bpolaszek/shh)
+[![CI Workflow](https://github.com/bpolaszek/shh/actions/workflows/ci.yml/badge.svg)](https://github.com/bpolaszek/shh/actions/workflows/ci.yml)
+[![Code Coverage](https://codecov.io/gh/bpolaszek/shh/branch/master/graph/badge.svg?token=4E762WVKSA)](https://codecov.io/gh/bpolaszek/shh)[![Quality Score](https://img.shields.io/scrutinizer/g/bpolaszek/shh.svg?style=flat-square)](https://scrutinizer-ci.com/g/bpolaszek/shh)
 [![Total Downloads](https://poser.pugx.org/bentools/shh/downloads)](https://packagist.org/packages/bentools/shh)
 
 # Shh! 🤫

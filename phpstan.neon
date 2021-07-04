@@ -1,0 +1,12 @@
+parameters:
+    reportUnmatchedIgnoredErrors: false
+    level: 5
+    paths:
+        - src
+    ignoreErrors:
+        -
+            message: '#has unknown class OpenSSLAsymmetricKey as its type#'
+            path: src/*
+        -
+            message: '#has invalid type OpenSSLAsymmetricKey#'
+            path: src/*
